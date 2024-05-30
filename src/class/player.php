@@ -1,23 +1,36 @@
 <?php
 
-class Player {
+abstract class Player {
     private $username;
-    private $password;
-    private $lvl = 0;
-    private $xp = 0;
-    protected $hp = 100;
-    protected $strength = 10;
+    private $hp;
+    private $lvl;
+    private $xp;
+    private $strength;
 
-    public function __construct($username, $password) {
-        $this->username = $username;
-        $this->password = $password;
+    public function __construct($username) {
+        $this->setUsername($username);
+        $this->setHp(100);
+        $this->setXp(0);
+        $this->setLvl(1);
+        $this->setStrength(50);
     }
 
     public function attack($targetCharacter) {
         $targetCharacter->hp -= $this->strength;
-        echo $targetCharacter->getUsername() . " a été attaqué par " . $this->getUsername() . " et a maintenant " . $targetCharacter->hp . " points de vie.";
+        if ($targetCharacter->getHp() <= 0) {
+            $targetCharacter->setHp(0);
+            echo $targetCharacter->getUsername() . " a été attaqué par " . $this->getUsername() . " et en est mort !";
+        } else {
+            echo $targetCharacter->getUsername() . " a été attaqué par " . $this->getUsername() . " et a maintenant " . $targetCharacter->getHp() . " points de vie.";
+        }
     }
 
+    public function setUsername($username) { $this->username = $username; }
+    public function setLvl($lvl) { $this->lvl = $lvl; }
+    public function setXp($xp) { $this->xp = $xp; }
+    public function setHp($hp) { $this->hp = $hp; }
+    public function setStrength($strength) { $this->strength = $strength; }
+    
     public function getUsername() { return $this->username; }
     public function getLvl() { return $this->lvl; }
     public function getXp() { return $this->xp; }

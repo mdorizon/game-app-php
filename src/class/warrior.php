@@ -1,8 +1,9 @@
 <?php
 
 class Warrior extends Player {
-    public function __construct() {
-        $this->hp *= 1.5;
-        $this->strength *= 0.8;
+    public function __construct($username) {
+        parent::__construct($username);
+        $this->setHp($this->getHp() * 1.5);
+        $this->setStrength($this->getStrength() * 0.8);
     }
 }

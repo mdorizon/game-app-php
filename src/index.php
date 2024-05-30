@@ -19,3 +19,5 @@ echo "strength " . $player2->getStrength() . "<br>";
 echo "<br>";
 
 $player1->attack($player2);
+echo '<br>';
+$player1->attack($player2);
