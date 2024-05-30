@@ -15,16 +15,26 @@ abstract class Player {
     }
 
     public function attack($target) {
-        $target->setHp($target->getHp() - $this->getStrength());
-        if ($target->getHp() <= 0) {
-            $target->setHp(0);
-            echo $target->getUsername() . " a été attaqué par " . $this->getUsername() . " et en est mort !";
-        } else {
-            echo $target->getUsername() . " a été attaqué par " . $this->getUsername() . " et a maintenant " . $target->getHp() . " points de vie.";
+        if ($target->getHp() > 0) {
+            $target->setHp($target->getHp() - $this->getStrength());
+            $this->increaseXp();
+            if($target->getHp() <= 0) {
+                echo "<br>" . $target->getUsername() . " est mort !";
+                $target->setHp(0);
+            }
+        } elseif($target->getHp() <= 0) {
+            echo "<br>" . $target->getUsername() . " est mort !";
         }
+    }
+
+    public function increaseLvl(){
+        $this->setLvl($this->getLvl() + 1);
+    }
+
+    public function increaseXp(){
         $this->setXp($this->getXp() + 80);
         if ($this->getXp() >= 100) {
-            $this->setLvl($this->getLvl() + 1);
+            $this->increaseLvl();
             $this->setXp($this->getXp() - 100);
         }
     }

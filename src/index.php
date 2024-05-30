@@ -15,9 +15,8 @@ echo "<br>";
 $player1->log();
 $player2->log();
 
-echo "<br>";
 $player1->attack($player2);
-echo "<br>";
+
 echo "<br>";
 echo "Phase 2";
 echo "<br>";
@@ -25,9 +24,8 @@ echo "<br>";
 $player1->log();
 $player2->log();
 
-echo "<br>";
 $player1->attack($player2);
-echo "<br>";
+
 echo "<br>";
 echo "Phase 3";
 echo "<br>";
