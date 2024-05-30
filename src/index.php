@@ -1,26 +1,21 @@
 <?php
+require_once __DIR__ . '/class/player.php';
+require_once __DIR__ . '/class/warrior.php';
+require_once __DIR__ . '/class/mage.php';
 
-require_once __DIR__ . "/class/User.php";
-require_once __DIR__ . "/class/Student.php";
-require_once __DIR__ . "/class/Teacher.php";
+$player1 = new Warrior("John", "password");
+$player2 = new Mage("Mc", "password");
 
-$student1 = new Student("Mc", "Doe");
-echo $student1->getEmail();
+echo "username " . $player1->getUsername() . "<br>";
+echo "HP " . $player1->getHp() . "<br>";
+echo "strength " . $player1->getStrength() . "<br>";
+
 echo "<br>";
 
-$teacher1 = new Teacher("Thomas", "Mouchelet");
-echo $teacher1->getEmail();
+echo "username " . $player2->getUsername() . "<br>";
+echo "HP " . $player2->getHp() . "<br>";
+echo "strength " . $player2->getStrength() . "<br>";
+
 echo "<br>";
 
-$user1 = new User("jean", "paul");
-$user2 = new User("thomas", "mouchelet");
-
-echo $user1->getEmail() . "<br>";
-echo $user2->getEmail() . "<br>";
-
-$user2->setEmail("<EMAIL>");
-echo $user2->getEmail() . "<br>";
-
-echo $user1->sayHello($user2) . "<br>";
-
-var_dump($user1);
+$player1->attack($player2);
