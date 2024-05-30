@@ -1,34 +1,21 @@
 <?php
-require_once __DIR__ . '/class/warrior.php';
-require_once __DIR__ . '/class/mage.php';
+require_once './controllers/CharacterController.php';
 
-$player1 = new Warrior("Warrior");
-$player2 = new Mage("Mage");
+$characterController = new CharacterController();
 
-$player1 = new Warrior("warrior");
-$player2 = new Mage("Mage");
+$action = isset($_GET['action']) ? $_GET['action'] : 'show_form';
 
-echo "<br>";
-echo "Phase 1";
-echo "<br>";
-
-$player1->log();
-$player2->log();
-
-$player1->attack($player2);
-
-echo "<br>";
-echo "Phase 2";
-echo "<br>";
-
-$player1->log();
-$player2->log();
-
-$player1->attack($player2);
-
-echo "<br>";
-echo "Phase 3";
-echo "<br>";
-
-$player1->log();
-$player2->log();
+switch($action) {
+    case 'list':
+        $characterController->showList();
+        break;
+    case 'show_form':
+        $characterController->showForm();
+        break;
+    case 'create': 
+        $characterController->create();
+        break;
+    default:
+        $characterController->showForm();
+        break;
+}
