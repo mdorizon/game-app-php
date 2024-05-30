@@ -1,5 +1,4 @@
 <?php
-
 abstract class Player {
     private $username;
     private $hp;
@@ -15,14 +14,33 @@ abstract class Player {
         $this->setStrength(50);
     }
 
-    public function attack($targetCharacter) {
-        $targetCharacter->hp -= $this->strength;
-        if ($targetCharacter->getHp() <= 0) {
-            $targetCharacter->setHp(0);
-            echo $targetCharacter->getUsername() . " a été attaqué par " . $this->getUsername() . " et en est mort !";
+    public function attack($target) {
+        $target->setHp($target->getHp() - $this->getStrength());
+        if ($target->getHp() <= 0) {
+            $target->setHp(0);
+            echo $target->getUsername() . " a été attaqué par " . $this->getUsername() . " et en est mort !";
         } else {
-            echo $targetCharacter->getUsername() . " a été attaqué par " . $this->getUsername() . " et a maintenant " . $targetCharacter->getHp() . " points de vie.";
+            echo $target->getUsername() . " a été attaqué par " . $this->getUsername() . " et a maintenant " . $target->getHp() . " points de vie.";
         }
+        $this->setXp($this->getXp() + 80);
+        if ($this->getXp() >= 100) {
+            $this->setLvl($this->getLvl() + 1);
+            $this->setXp($this->getXp() - 100);
+        }
+    }
+
+    public function log(){
+        echo "<br>";
+        echo "Username : " . $this->getUsername();
+        echo "<br>";
+        echo "HP : " . $this->getHp();
+        echo "<br>";
+        echo "LVL : " . $this->getLvl();
+        echo "<br>";
+        echo "XP : " . $this->getXp();
+        echo "<br>";
+        echo "Strength : " . $this->getStrength();
+        echo "<br>";
     }
 
     public function setUsername($username) { $this->username = $username; }

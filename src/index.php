@@ -1,23 +1,36 @@
 <?php
-require_once __DIR__ . '/class/player.php';
 require_once __DIR__ . '/class/warrior.php';
 require_once __DIR__ . '/class/mage.php';
 
-$player1 = new Warrior("John", "password");
-$player2 = new Mage("Mc", "password");
+$player1 = new Warrior("Warrior");
+$player2 = new Mage("Mage");
 
-echo "username " . $player1->getUsername() . "<br>";
-echo "HP " . $player1->getHp() . "<br>";
-echo "strength " . $player1->getStrength() . "<br>";
-
-echo "<br>";
-
-echo "username " . $player2->getUsername() . "<br>";
-echo "HP " . $player2->getHp() . "<br>";
-echo "strength " . $player2->getStrength() . "<br>";
+$player1 = new Warrior("warrior");
+$player2 = new Mage("Mage");
 
 echo "<br>";
+echo "Phase 1";
+echo "<br>";
 
+$player1->log();
+$player2->log();
+
+echo "<br>";
 $player1->attack($player2);
-echo '<br>';
+echo "<br>";
+echo "<br>";
+echo "Phase 2";
+echo "<br>";
+
+$player1->log();
+$player2->log();
+
+echo "<br>";
 $player1->attack($player2);
+echo "<br>";
+echo "<br>";
+echo "Phase 3";
+echo "<br>";
+
+$player1->log();
+$player2->log();
